@@ -23,9 +23,6 @@ void	ft_plot_low(int dx, int dy, t_point *p0, t_data *data)
 	while (++x <= x1)
 	{
 		//printf("low x = %d, y = %d\n", x, y);
-		if (p0->z_orig == 10)
-			data->image.data[IMG_WIDTH*y + x] = 65280;
-		else			
 			data->image.data[IMG_WIDTH*y + x] = -1;
 		//data->image.data[data->image.size_l*y + (data->image.bpp / 8)*x] = -1;
 		if (D > 0)
@@ -59,9 +56,6 @@ void	ft_plot_high(int dx, int dy, t_point *p0, t_data *data)
 	{
 		//printf("high x = %d, y = %d, data = %p\n", x, y, data);
 //		if ((x >=0) && (y >= 0))
-		if (p0->z_orig == 10)
-			data->image.data[IMG_WIDTH*y + x] = 65280;
-		else			
 			data->image.data[IMG_WIDTH*y + x] = -1;
 		//data->image.data[data->image.size_l*y + (data->image.bpp / 8)*x] = -1;
 		if (D > 0)

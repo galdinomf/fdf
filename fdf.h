@@ -70,5 +70,6 @@ char	**ft_split(char const *s, char c);
 void	ft_bresenham(t_point *p0, t_point *p1, t_data *data);
 int	ft_atoi(const char *nptr);
 t_point	*ft_iso_coord(int x, int y, int z);
+int	ft_render(t_data *data);
 
 #endif
