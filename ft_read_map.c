@@ -51,6 +51,6 @@ void	ft_read_map(char *path, t_data *data)
 			ft_lstadd_back(&data->lines, aux_node);
 		}
 	}
-	ft_lstiter(data->lines, &ft_read_node);
+	//ft_lstiter(data->lines, &ft_read_node);
 }
 

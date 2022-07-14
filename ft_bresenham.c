@@ -1,87 +1,84 @@
-
-//this code only works with lines drawn from left to right and top-down
 #include "fdf.h"
 
-void	ft_plot_low(int dx, int dy, t_point *p0, t_data *data)
+void	ft_define_direction(int *ti, int *dt)
 {
-	int	x1;
-	int	x;
-	int	y;
-	int	D;
-	int	yi;
-	
-	yi = 1;
-	if (dy < 0)
+	if (*dt < 0)
 	{
-		yi = -1;
-		dy *= -1;
-	}
-	y = p0->y;
-	x = p0->x - 1;
-	x1 = dx + p0->x;
-	D = (2 * dy) - dx;
-	while (++x <= x1)
-	{
-		//printf("low x = %d, y = %d\n", x, y);
-			data->image.data[IMG_WIDTH*y + x] = -1;
-		//data->image.data[data->image.size_l*y + (data->image.bpp / 8)*x] = -1;
-		if (D > 0)
-		{
-			y += yi;
-			D -= 2 * dx;
-		}
-			D += 2 * dy;
+		*ti = -1;
+		*dt *= -1;
 	}
 }
 
-void	ft_plot_high(int dx, int dy, t_point *p0, t_data *data)
+void	ft_plot_line_low(t_point *p0, t_point *p1, t_data *data)
 {
-	int	y1;
-	int	x;
-	int	y;
+	int	dx;
+	int	dy;
 	int	D;
-	int	xi;
-	
-	xi = 1;
-	if (dx < 0)
+	int	y;
+	int	yi;
+
+	dx = p1->x - p0->x;
+	dy = p1->y - p0->y;
+	yi = 1;
+	ft_define_direction(&yi, &dy);
+	D = (2 * dy) - dx;
+	y = p0->y;
+	while (p0->x <= p1->x)
 	{
-		xi = -1;
-		dx *= -1;
+		data->image.data[IMG_WIDTH * y + p0->x] = -1;
+		if (D > 0)
+		{
+			y += yi;
+			D += 2 * (dy - dx);
+		}
+		else
+			D += 2 * dy;
+		++p0->x;
 	}
-	y = p0->y - 1;
-	x = p0->x;
-	y1 = dy + p0->y;
+}
+
+void	ft_plot_line_high(t_point *p0, t_point *p1, t_data *data)
+{
+	int	dx;
+	int	dy;
+	int	D;
+	int	x;
+	int	xi;
+
+	dy = p1->y - p0->y;
+	dx = p1->x - p0->x;
+	xi = 1;
+	ft_define_direction(&xi, &dx);
 	D = (2 * dx) - dy;
-	while (++y <= y1)
+	x = p0->x;
+	while (p0->y <= p1->y)
 	{
-		//printf("high x = %d, y = %d, data = %p\n", x, y, data);
-//		if ((x >=0) && (y >= 0))
-			data->image.data[IMG_WIDTH*y + x] = -1;
-		//data->image.data[data->image.size_l*y + (data->image.bpp / 8)*x] = -1;
+		data->image.data[IMG_WIDTH * p0->y + x] = -1;
 		if (D > 0)
 		{
 			x += xi;
-			D -= 2 * dy;
+			D += 2 * (dx - dy);
 		}
+		else
 			D += 2 * dx;
+		++p0->y;
 	}
 }
 
 void	ft_bresenham(t_point *p0, t_point *p1, t_data *data)
 {
-	int	dx;
-	int	dy;
-	
-	dx = p1->x - p0->x;
-	dy = p1->y - p0->y;
-	if (dy < dx)
+	if (abs(p1->y - p0->y) < abs(p1->x - p0->x))
 	{
-		ft_plot_low(dx, dy, p0, data);
+		if (p0->x > p1->x)
+			ft_plot_line_low(p1, p0, data);
+		else
+			ft_plot_line_low(p0, p1, data);
 	}
 	else
 	{
-		ft_plot_high(dx, dy, p0, data);
+		if (p0->y > p1->y)
+			ft_plot_line_high(p1, p0, data);
+		else
+			ft_plot_line_high(p0, p1, data);
 	}
 }
-
-
