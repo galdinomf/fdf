@@ -1,16 +1,20 @@
 #include "fdf.h"
 
-#define K 25
+//#define Kx 22
+//#define Ky 22
+
 
 void	ft_draw_right(int u, int v, t_list *node, t_data *data)
 {
 	t_point	*p0;
 	t_point *p1;
 	int	*s;
+	int	k;
 	
+	k = data->k;
 	s = node->content;
-	p0 = ft_iso_coord(u * K, v * K, s[u]);
-	p1 = ft_iso_coord((u + 1) * K, v * K, s[u + 1]);
+	p0 = ft_iso_coord(u * k, v * k, s[u]);
+	p1 = ft_iso_coord((u + 1) * k, v * k, s[u + 1]);
 	ft_bresenham(p0, p1, data);
 	free(p1);
 	free(p0);
@@ -21,11 +25,13 @@ void	ft_draw_down(int u, int	v, t_list *node, t_data *data)
 	t_point	*p0;
 	t_point *p1;
 	int	*s;
+	int	k;
 	
+	k = data->k;
 	s = node->content;
-	p0 = ft_iso_coord(u * K, v * K, s[u]);
+	p0 = ft_iso_coord(u * k, v * k, s[u]);
 	s = node->next->content;
-	p1 = ft_iso_coord(u * K, (v + 1) * K, s[u]);
+	p1 = ft_iso_coord(u * k, (v + 1) * k, s[u]);
 	ft_bresenham(p0, p1, data);
 	free(p1);
 	free(p0);

@@ -12,7 +12,7 @@ t_point	*ft_iso_coord(int x, int y, int z)
 	point = (t_point *) malloc(sizeof(t_point));
 	//printf("x = %d, y = %d, z = %d\n", x, y, z);
 	point->x = round(x * cos(A) + y * cos(A + ANG) + z * cos(A - ANG)) + (IMG_WIDTH / 4);
-	point->y = round(x * sin(A) + y * sin(A + ANG) + z * sin(A - ANG)) + (IMG_HEIGHT / 4);
+	point->y = round(x * sin(A) + y * sin(A + ANG) + z * sin(A - ANG)) + (IMG_HEIGHT / 8);
 	point->z_orig = z;
 	//point->x = x;
 	//point->y = y;

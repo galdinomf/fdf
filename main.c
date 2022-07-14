@@ -10,7 +10,7 @@ int	main(int argc, char *argv[])
 		ft_read_map(argv[1], &data);
 	}
 
-	
+	ft_get_k(&data);
 	ft_hook(&data);
 	ft_close_all(&data);
 	return (0);

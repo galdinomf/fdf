@@ -17,6 +17,7 @@ SRCS=	ft_initialize.c\
 	ft_atoi.c\
 	ft_iso_coord.c\
 	ft_render.c\
+	ft_get_k.c\
 
 CFLAGS	= -Wall -Wextra -Werror
 

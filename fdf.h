@@ -41,6 +41,7 @@ typedef struct s_data
 	void	*win_ptr;
 	t_list	*lines;
 	t_img	image;
+	int	k;
 }	t_data;
 
 typedef struct s_point
@@ -71,5 +72,6 @@ void	ft_bresenham(t_point *p0, t_point *p1, t_data *data);
 int	ft_atoi(const char *nptr);
 t_point	*ft_iso_coord(int x, int y, int z);
 int	ft_render(t_data *data);
+void	ft_get_k(t_data *data);
 
 #endif
