@@ -39,7 +39,22 @@ int	handle_keypress(int keysym, t_data *data)
 		mlx_destroy_image(data->mlx_ptr, data->image.img_ptr);
 		mlx_destroy_window(data->mlx_ptr, data->win_ptr);
 		data->win_ptr = NULL;
+	}	
+	if (keysym == 103)
+	{
+		mlx_destroy_image(data->mlx_ptr, data->image.img_ptr);
+		data->angle += 0.01;
+		data->image.img_ptr = mlx_new_image(data->mlx_ptr, \
+		IMG_WIDTH, IMG_HEIGHT);
 	}
+	if (keysym == 104)
+	{
+		mlx_destroy_image(data->mlx_ptr, data->image.img_ptr);
+		data->angle -= 0.01;
+		data->image.img_ptr = mlx_new_image(data->mlx_ptr, \
+		IMG_WIDTH, IMG_HEIGHT);
+	}
+	printf("keysym = %d\n", keysym);
 	return (0);
 }
 

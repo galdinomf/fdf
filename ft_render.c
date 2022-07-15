@@ -13,8 +13,8 @@ void	ft_draw_right(int u, int v, t_list *node, t_data *data)
 	
 	k = data->k;
 	s = node->content;
-	p0 = ft_iso_coord(u * k, v * k, s[u]);
-	p1 = ft_iso_coord((u + 1) * k, v * k, s[u + 1]);
+	p0 = ft_iso_coord(u * k, v * k, s[u], data);
+	p1 = ft_iso_coord((u + 1) * k, v * k, s[u + 1], data);
 	ft_bresenham(p0, p1, data);
 	free(p1);
 	free(p0);
@@ -29,9 +29,9 @@ void	ft_draw_down(int u, int	v, t_list *node, t_data *data)
 	
 	k = data->k;
 	s = node->content;
-	p0 = ft_iso_coord(u * k, v * k, s[u]);
+	p0 = ft_iso_coord(u * k, v * k, s[u], data);
 	s = node->next->content;
-	p1 = ft_iso_coord(u * k, (v + 1) * k, s[u]);
+	p1 = ft_iso_coord(u * k, (v + 1) * k, s[u], data);
 	ft_bresenham(p0, p1, data);
 	free(p1);
 	free(p0);
