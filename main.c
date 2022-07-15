@@ -3,7 +3,6 @@
 int	main(int argc, char *argv[])
 {
 	t_data	data;
-	char	h[] = "C8";
 
 	ft_initialize(&data);
 	if (argc == 2)

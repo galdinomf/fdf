@@ -9,6 +9,16 @@ void	ft_define_direction(int *ti, int *dt)
 	}
 }
 
+int	ft_in_limits(int x, int y)
+{
+	if ((x >= 0) && (x < IMG_WIDTH))
+	{
+		if ((y >= 0) && (y < IMG_HEIGHT))
+			return (1);
+	}
+	return (0);
+}
+
 void	ft_plot_line_low(t_point *p0, t_point *p1, t_data *data)
 {
 	int	dx;
@@ -25,7 +35,8 @@ void	ft_plot_line_low(t_point *p0, t_point *p1, t_data *data)
 	y = p0->y;
 	while (p0->x <= p1->x)
 	{
-		data->image.data[IMG_WIDTH * y + p0->x] = -1;
+		if (ft_in_limits(p0->x, y))
+			data->image.data[IMG_WIDTH * y + p0->x] = -1;
 		if (D > 0)
 		{
 			y += yi;
@@ -53,7 +64,8 @@ void	ft_plot_line_high(t_point *p0, t_point *p1, t_data *data)
 	x = p0->x;
 	while (p0->y <= p1->y)
 	{
-		data->image.data[IMG_WIDTH * p0->y + x] = -1;
+		if (ft_in_limits(x, p0->y))
+			data->image.data[IMG_WIDTH * p0->y + x] = -1;
 		if (D > 0)
 		{
 			x += xi;

@@ -43,6 +43,8 @@ typedef struct s_data
 	t_img	image;
 	int	k;
 	float	angle;
+	int	delta_x;
+	int	delta_y;
 }	t_data;
 
 typedef struct s_point
@@ -75,5 +77,6 @@ t_point	*ft_iso_coord(int x, int y, int z, t_data *data);
 int	ft_render(t_data *data);
 void	ft_get_k(t_data *data);
 int	ft_hex_to_dec(char *h);
+int	ft_keypress(int keysym, t_data *data);
 
 #endif
