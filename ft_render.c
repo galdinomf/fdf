@@ -1,37 +1,44 @@
 #include "fdf.h"
 
-//#define Kx 22
-//#define Ky 22
+int	ft_z(int z, t_data *data)
+{
+	int	new_z;
 
+	if (z > 0)
+		new_z = z + data->delta_z;
+	else
+		new_z = z;
+	return (new_z);
+}
 
 void	ft_draw_right(int u, int v, t_list *node, t_data *data)
 {
 	t_point	*p0;
-	t_point *p1;
+	t_point	*p1;
 	int	*s;
 	int	k;
-	
+
 	k = data->k;
 	s = node->content;
-	p0 = ft_iso_coord(u * k, v * k, s[u], data);
-	p1 = ft_iso_coord((u + 1) * k, v * k, s[u + 1], data);
+	p0 = ft_iso_coord(u * k, v * k, ft_z(s[u], data) * k, data);
+	p1 = ft_iso_coord((u + 1) * k, v * k, ft_z(s[u + 1], data) * k, data);
 	ft_bresenham(p0, p1, data);
 	free(p1);
 	free(p0);
 }
 
-void	ft_draw_down(int u, int	v, t_list *node, t_data *data)
+void	ft_draw_down(int u, int v, t_list *node, t_data *data)
 {
 	t_point	*p0;
-	t_point *p1;
+	t_point	*p1;
 	int	*s;
 	int	k;
-	
+
 	k = data->k;
 	s = node->content;
-	p0 = ft_iso_coord(u * k, v * k, s[u], data);
+	p0 = ft_iso_coord(u * k, v * k, ft_z(s[u], data) * k, data);
 	s = node->next->content;
-	p1 = ft_iso_coord(u * k, (v + 1) * k, s[u], data);
+	p1 = ft_iso_coord(u * k, (v + 1) * k, ft_z(s[u], data) * k, data);
 	ft_bresenham(p0, p1, data);
 	free(p1);
 	free(p0);

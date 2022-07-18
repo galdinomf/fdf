@@ -4,11 +4,14 @@ int	main(int argc, char *argv[])
 {
 	t_data	data;
 
-	ft_initialize(&data);
-	if (argc == 2)
+	if (argc != 2)
 	{
-		ft_read_map(argv[1], &data);
+		ft_argc_errors(argc);
+		return (1);
 	}
+	if (ft_read_map(argv[1], &data))
+		return (1);
+	ft_initialize(&data);
 	ft_get_k(&data);
 	ft_hook(&data);
 	ft_close_all(&data);

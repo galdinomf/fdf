@@ -19,6 +19,9 @@ SRCS=	ft_initialize.c\
 	ft_render.c\
 	ft_get_k.c\
 	ft_keypress.c\
+	ft_argc_errors.c\
+	ft_close_window.c\
+	ft_modify_z.c\
 
 CFLAGS	= -Wall -Wextra -Werror
 

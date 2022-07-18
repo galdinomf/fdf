@@ -7,7 +7,7 @@ void	ft_get_k(t_data *data)
 	int	*s;
 	t_list	*aux;
 	int	*i;
-	
+
 	aux = data->lines;
 	s = aux->content;
 	while (aux->next)
@@ -15,10 +15,10 @@ void	ft_get_k(t_data *data)
 		i = aux->next->content;
 		if (i[0] > s[0])
 			s = i;
-		aux = aux->next;		
+		aux = aux->next;
 	}
-	kx = IMG_WIDTH / (2 * s[0]);
-	ky = IMG_HEIGHT / (2 * ft_lstsize(data->lines));
+	kx = IMG_WIDTH / (4 * s[0]);
+	ky = IMG_HEIGHT / (4 * ft_lstsize(data->lines));
 	if (kx < ky)
 		data->k = kx;
 	else

@@ -10,8 +10,6 @@ int	handle_mouserelease(t_data *data)
 
 void	ft_hook(t_data *data)
 {
-	//tentar tirar o loop hook. trocar pelo expose hook
-	//mlx_loop_hook(data->mlx_ptr, &handle_no_event, data);
 	mlx_loop_hook(data->mlx_ptr, &ft_render, data);
 	mlx_hook(data->win_ptr, KeyPress, KeyPressMask, &ft_keypress, data);
 	mlx_hook(data->win_ptr, DestroyNotify, 0, &handle_mouserelease, data);

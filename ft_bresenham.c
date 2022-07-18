@@ -23,7 +23,7 @@ void	ft_plot_line_low(t_point *p0, t_point *p1, t_data *data)
 {
 	int	dx;
 	int	dy;
-	int	D;
+	int	d;
 	int	y;
 	int	yi;
 
@@ -31,19 +31,19 @@ void	ft_plot_line_low(t_point *p0, t_point *p1, t_data *data)
 	dy = p1->y - p0->y;
 	yi = 1;
 	ft_define_direction(&yi, &dy);
-	D = (2 * dy) - dx;
+	d = (2 * dy) - dx;
 	y = p0->y;
 	while (p0->x <= p1->x)
 	{
 		if (ft_in_limits(p0->x, y))
 			data->image.data[IMG_WIDTH * y + p0->x] = -1;
-		if (D > 0)
+		if (d > 0)
 		{
 			y += yi;
-			D += 2 * (dy - dx);
+			d += 2 * (dy - dx);
 		}
 		else
-			D += 2 * dy;
+			d += 2 * dy;
 		++p0->x;
 	}
 }
@@ -52,7 +52,7 @@ void	ft_plot_line_high(t_point *p0, t_point *p1, t_data *data)
 {
 	int	dx;
 	int	dy;
-	int	D;
+	int	d;
 	int	x;
 	int	xi;
 
@@ -60,19 +60,19 @@ void	ft_plot_line_high(t_point *p0, t_point *p1, t_data *data)
 	dx = p1->x - p0->x;
 	xi = 1;
 	ft_define_direction(&xi, &dx);
-	D = (2 * dx) - dy;
+	d = (2 * dx) - dy;
 	x = p0->x;
 	while (p0->y <= p1->y)
 	{
 		if (ft_in_limits(x, p0->y))
 			data->image.data[IMG_WIDTH * p0->y + x] = -1;
-		if (D > 0)
+		if (d > 0)
 		{
 			x += xi;
-			D += 2 * (dx - dy);
+			d += 2 * (dx - dy);
 		}
 		else
-			D += 2 * dx;
+			d += 2 * dx;
 		++p0->y;
 	}
 }

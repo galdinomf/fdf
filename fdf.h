@@ -7,7 +7,6 @@
 # include <unistd.h>
 # include <fcntl.h>
 # include <math.h>
-#include <stdio.h>
 
 # define MLX_ERROR 1
 # define WINDOW_WIDTH 800
@@ -45,6 +44,8 @@ typedef struct s_data
 	float	angle;
 	int	delta_x;
 	int	delta_y;
+	int	delta_z;
+	int	perspective;
 }	t_data;
 
 typedef struct s_point
@@ -69,7 +70,7 @@ char	*ft_accumulate_buffer(char *acc, char *buf, int bytes_read);
 char	*ft_extract_remainder_bytes_from_line(char *acc);
 int	ft_initialize_and_get_line(int fd, char *buf, char **acc);
 char	*ft_substr(char const *s, unsigned int start, size_t len);
-void	ft_read_map(char *path, t_data *data);
+int	ft_read_map(char *path, t_data *data);
 char	**ft_split(char const *s, char c);
 void	ft_bresenham(t_point *p0, t_point *p1, t_data *data);
 int	ft_atoi(const char *nptr);
@@ -78,5 +79,8 @@ int	ft_render(t_data *data);
 void	ft_get_k(t_data *data);
 int	ft_hex_to_dec(char *h);
 int	ft_keypress(int keysym, t_data *data);
+void	ft_argc_errors(int argc);
+void	ft_close_window(t_data *data);
+void	ft_modify_z(int n, t_data *data);
 
 #endif
